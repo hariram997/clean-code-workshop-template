@@ -49,4 +49,8 @@ public class Rental {
         if (additionalBonus()) frequentRenterPoints++;
         return frequentRenterPoints;
     }
+
+    public String title() {
+        return movie.getTitle();
+    }
 }
