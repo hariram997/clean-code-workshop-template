@@ -21,28 +21,29 @@ public class Customer {
 
     public String statement() {
         double totalAmount = 0;
-        int frequentRenterPoints = 0;
+        int frequentRentalPoints = 0;
         String statement = "Rental Record for " + getName() + "\n";
 
         for (Rental rental : rentals) {
             double amount = rental.amount();
 
-            // add frequent renter points
-            frequentRenterPoints++;
-
-            if (rental.additionalBonus()) frequentRenterPoints++;
+            frequentRentalPoints += rental.frequentPoints();
 
             //show figures for this rental
-            statement += "\t" + rental.getMovie().getTitle() + "\t" +
-                    amount + "\n";
+            statement += statementFor(rental, amount);
             totalAmount += amount;
         }
 
         //add footer lines statement
         statement += "Amount owed is " + totalAmount + "\n";
-        statement += "You earned " + frequentRenterPoints
+        statement += "You earned " + frequentRentalPoints
                 + " frequent renter points";
         return statement;
+    }
+
+    private String statementFor(Rental rental, double amount) {
+        return "\t" + rental.getMovie().getTitle() + "\t" +
+                amount + "\n";
     }
 
 }
