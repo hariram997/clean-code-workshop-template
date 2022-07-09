@@ -4,14 +4,11 @@ import java.util.List;
 
 class HtmlStatement {
     private String customerName;
-    private double totalAmount;
-    private int frequentRentalPoints;
-    private List<Rental> rentals;
 
-    HtmlStatement(String customerName, double totalAmount, int frequentRentalPoints, List<Rental> rentals) {
+    private Rentals rentals;
+
+    HtmlStatement(String customerName, Rentals rentals) {
         this.customerName = customerName;
-        this.totalAmount = totalAmount;
-        this.frequentRentalPoints = frequentRentalPoints;
         this.rentals = rentals;
     }
 
@@ -34,8 +31,8 @@ class HtmlStatement {
 
     private String htmlFooter() {
         String htmlStatement = "";
-        htmlStatement += "<p>Amount owed is <b>" + totalAmount + "</b></p>";
-        htmlStatement += "<p>You earned <b>" + frequentRentalPoints
+        htmlStatement += "<p>Amount owed is <b>" + rentals.totalAmount() + "</b></p>";
+        htmlStatement += "<p>You earned <b>" + rentals.frequentRentalPoints()
                 + "</b> frequent renter points</p>";
         return htmlStatement;
     }

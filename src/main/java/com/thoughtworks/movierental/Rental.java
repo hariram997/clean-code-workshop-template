@@ -17,24 +17,8 @@ public class Rental {
         return movie;
     }
 
-    public double amount() {
-        double amount = 0;
-        switch (movie.getPriceCode()) {
-            case Movie.REGULAR:
-                amount += 2;
-                if (daysRented > 2)
-                    amount += (daysRented - 2) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                amount += daysRented * 3;
-                break;
-            case Movie.CHILDRENS:
-                amount += 1.5;
-                if (daysRented > 3)
-                    amount += (daysRented - 3) * 1.5;
-                break;
-        }
-        return amount;
+    public double amount(){
+        return movie.amount(daysRented);
     }
 
     private boolean additionalBonus() {
@@ -44,10 +28,9 @@ public class Rental {
     }
 
     public int frequentPoints() {
-        int frequentRenterPoints = 1;
 
-        if (additionalBonus()) frequentRenterPoints++;
-        return frequentRenterPoints;
+        if (additionalBonus()) return 2;
+        return 1;
     }
 
     public String title() {

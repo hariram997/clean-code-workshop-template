@@ -50,6 +50,7 @@ class CustomerTest {
         customer.addRental(new Rental(new Movie("movie-2", Movie.NEW_RELEASE), 5));
         customer.addRental(new Rental(new Movie("movie-3", Movie.CHILDRENS), 5));
 
+        customer.statement();
         assertEquals(
                 "<h1>Rental Record for <b>ABC</b></h1>" +
                         "<p>movie-1 6.5</p>" +
