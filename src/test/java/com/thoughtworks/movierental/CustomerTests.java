@@ -50,14 +50,13 @@ class CustomerTest {
         customer.addRental(new Rental(new Movie("movie-2", Movie.NEW_RELEASE), 5));
         customer.addRental(new Rental(new Movie("movie-3", Movie.CHILDRENS), 5));
 
-        assertEquals("<>" +
+        assertEquals(
                 "<h1>Rental Record for <b>ABC</b></h1>" +
-                "<p>movie-1 6.5</p>" +
-                "<p>movie-2 15.0</p>" +
-                "<p>movie-3 4.5</p>" +
-                "<p>Amount owed is <b>26.0</b></p>" +
-                "<p>You earned <b>4</b> frequent renter points</p>" +
-                "</>", customer.htmlStatement());
+                        "<p>movie-1 6.5</p>" +
+                        "<p>movie-2 15.0</p>" +
+                        "<p>movie-3 4.5</p>" +
+                        "<p>Amount owed is <b>26.0</b></p>" +
+                        "<p>You earned <b>4</b> frequent renter points</p>", customer.htmlStatement());
     }
 
 
