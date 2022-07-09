@@ -20,17 +20,48 @@ public class Customer {
     }
 
     public String statement() {
-        String statement = "Rental Record for " + getName() + "\n";
 
-        statement += rentalStatement();
-        //add footer lines statement
+        return header() + body() + footer();
+    }
+
+    public String htmlStatement() {
+        return "<>"+htmlHeader() + htmlBody() + htmlFooter()+"</>";
+    }
+
+    private String htmlHeader() {
+        return "<h1>Rental Record for <b>" + getName() + "</b></h1>";
+    }
+
+    private String htmlBody() {
+        String htmlStatement = "";
+        for (Rental rental : rentals) {
+            htmlStatement += "<p>" + rental.title() +" "+
+                    rental.amount() + "</p>";
+        }
+        return htmlStatement;
+    }
+
+    private String htmlFooter() {
+        String htmlStatement = "";
+        htmlStatement += "<p>Amount owed is <b>" + totalAmount() + "</b></p>";
+        htmlStatement += "<p>You earned <b>" + frequentRentalPoints()
+                + "</b> frequent renter points</p>";
+        return htmlStatement;
+    }
+
+    private String header() {
+        return "Rental Record for " + getName() + "\n";
+    }
+
+    private String footer() {
+        String statement = "";
         statement += "Amount owed is " + totalAmount() + "\n";
         statement += "You earned " + frequentRentalPoints()
                 + " frequent renter points";
         return statement;
     }
 
-    private String rentalStatement() {
+    private String body() {
         String statement = "";
         for (Rental rental : rentals) {
             statement += "\t" + rental.title() + "\t" +

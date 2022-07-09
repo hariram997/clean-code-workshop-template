@@ -25,7 +25,7 @@ class CustomerTest {
                 "\tMovie1\t30.0\n" +
                 "\tMovie2\t19.5\n" +
                 "Amount owed is 56.0\n" +
-                "You earned 4 frequent renter points",abc.statement());
+                "You earned 4 frequent renter points", abc.statement());
     }
 
     @Test
@@ -41,6 +41,23 @@ class CustomerTest {
                 "\tmovie-3\t4.5\n" +
                 "Amount owed is 26.0\n" +
                 "You earned 4 frequent renter points", customer.statement());
+    }
+
+    @Test
+    public void shouldReturnCustomerHtmlStatement() {
+        Customer customer = new Customer("ABC");
+        customer.addRental(new Rental(new Movie("movie-1", Movie.REGULAR), 5));
+        customer.addRental(new Rental(new Movie("movie-2", Movie.NEW_RELEASE), 5));
+        customer.addRental(new Rental(new Movie("movie-3", Movie.CHILDRENS), 5));
+
+        assertEquals("<>" +
+                "<h1>Rental Record for <b>ABC</b></h1>" +
+                "<p>movie-1 6.5</p>" +
+                "<p>movie-2 15.0</p>" +
+                "<p>movie-3 4.5</p>" +
+                "<p>Amount owed is <b>26.0</b></p>" +
+                "<p>You earned <b>4</b> frequent renter points</p>" +
+                "</>", customer.htmlStatement());
     }
 
 
